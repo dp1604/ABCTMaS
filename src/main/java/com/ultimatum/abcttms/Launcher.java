@@ -7,6 +7,8 @@ package com.ultimatum.abcttms;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.JCheckBox;
 
 /**
@@ -22,6 +24,9 @@ public class Launcher extends javax.swing.JFrame {
     double endTime = 0.0;
     double duration = 0.0;
     
+    
+    String [] am_pm = {"a.m.","p.m."};
+    String [] time = {"8.00","9.00","10.00","11.00","12.00","1.00","2.00","3.00","4.00","5.00","6.00","7.00",};
 
     /**
      * Creates new form Launcher
@@ -29,15 +34,14 @@ public class Launcher extends javax.swing.JFrame {
     public Launcher() {
         initComponents();
         
-        String [] am_pm = {"a.m.","p.m."};
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(am_pm));
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(am_pm));
         
-        String [] time = {"8.00","9.00","10.00","11.00","12.00","1.00","2.00","3.00","4.00","5.00","6.00","7.00",};
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(time));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(time));
         
         addCheckBoxHandlers();
+        addComboHandlers();
     }
     
     public void addCheckBoxHandlers(){
@@ -105,7 +109,7 @@ public class Launcher extends javax.swing.JFrame {
                 workingDays[5] = 0;
                 numberOfWorkingDays--;
             }
-            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + " days");
         });
         jCheckBox7.addActionListener((ActionEvent event) -> {
             JCheckBox cb = (JCheckBox) event.getSource();
@@ -116,7 +120,32 @@ public class Launcher extends javax.swing.JFrame {
                 workingDays[6] = 0;
                 numberOfWorkingDays--;
             }
-            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + " days");
+        });
+    }
+    
+    public void addComboHandlers(){
+        jComboBox2.addItemListener(new ItemListener(){
+            public void itemStateChanged(ItemEvent event){
+                if(jComboBox2.getSelectedIndex() == 0){
+                    startTime = Double.parseDouble(time[jComboBox1.getSelectedIndex()]);
+                } else{
+                    startTime = Double.parseDouble(time[jComboBox1.getSelectedIndex()]) + 12.0;
+                }
+                duration = endTime - startTime;
+                jLabel9.setText("Working time per day : "+ duration +" hours");
+            }
+        });
+        jComboBox4.addItemListener(new ItemListener(){
+            public void itemStateChanged(ItemEvent event){
+                if(jComboBox4.getSelectedIndex() == 0){
+                    endTime = Double.parseDouble(time[jComboBox3.getSelectedIndex()]);
+                } else{
+                    endTime = Double.parseDouble(time[jComboBox3.getSelectedIndex()]) + 12.0;
+                }
+                duration = endTime - startTime;
+                jLabel9.setText("Working time per day : "+ duration +" hours");
+            }
         });
     }
 
@@ -154,6 +183,7 @@ public class Launcher extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -291,6 +321,8 @@ public class Launcher extends javax.swing.JFrame {
 
         jLabel8.setText("Number of working days : 0");
 
+        jLabel9.setText("Working time per day : 0 hours");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -308,7 +340,9 @@ public class Launcher extends javax.swing.JFrame {
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
-                                .addComponent(jLabel8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +372,9 @@ public class Launcher extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel8)))
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel9)))
                 .addGap(34, 34, 34)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -420,6 +456,7 @@ public class Launcher extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
