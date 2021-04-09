@@ -17,11 +17,15 @@ import javax.swing.JCheckBox;
  */
 public class Launcher extends javax.swing.JFrame {
     
+    int[] workingDaysCurrent;
+    double startTimeCurrent;
+    double endTimeCurrent;
+    
     int [] workingDays = {0,0,0,0,0,0,0};
     int numberOfWorkingDays = 0;
     
-    double startTime = 0.0;
-    double endTime = 0.0;
+    double startTime = 8.0;
+    double endTime = 8.0;
     double duration = 0.0;
     
     
@@ -54,7 +58,7 @@ public class Launcher extends javax.swing.JFrame {
                 workingDays[0] = 0;
                 numberOfWorkingDays--;
             }
-            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + " days");
         });
         jCheckBox2.addActionListener((ActionEvent event) -> {
             JCheckBox cb = (JCheckBox) event.getSource();
@@ -65,7 +69,7 @@ public class Launcher extends javax.swing.JFrame {
                 workingDays[1] = 0;
                 numberOfWorkingDays--;
             }
-            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + " days");
         });
         jCheckBox3.addActionListener((ActionEvent event) -> {
             JCheckBox cb = (JCheckBox) event.getSource();
@@ -76,7 +80,7 @@ public class Launcher extends javax.swing.JFrame {
                 workingDays[2] = 0;
                 numberOfWorkingDays--;
             }
-            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + " days");
         });
         jCheckBox4.addActionListener((ActionEvent event) -> {
             JCheckBox cb = (JCheckBox) event.getSource();
@@ -87,7 +91,7 @@ public class Launcher extends javax.swing.JFrame {
                 workingDays[3] = 0;
                 numberOfWorkingDays--;
             }
-            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + " days");
         });
         jCheckBox5.addActionListener((ActionEvent event) -> {
             JCheckBox cb = (JCheckBox) event.getSource();
@@ -98,7 +102,7 @@ public class Launcher extends javax.swing.JFrame {
                 workingDays[4] = 0;
                 numberOfWorkingDays--;
             }
-            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + " days");
         });
         jCheckBox6.addActionListener((ActionEvent event) -> {
             JCheckBox cb = (JCheckBox) event.getSource();
@@ -189,6 +193,8 @@ public class Launcher extends javax.swing.JFrame {
 
         jLabel1.setText("You will need administrator privileges in order to change these settings.");
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         jLabel2.setText("Select working days of the week");
 
         jCheckBox1.setText("Monday");
@@ -220,7 +226,7 @@ public class Launcher extends javax.swing.JFrame {
                     .addComponent(jCheckBox2)
                     .addComponent(jCheckBox1)
                     .addComponent(jLabel2))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,8 +247,10 @@ public class Launcher extends javax.swing.JFrame {
                 .addComponent(jCheckBox6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel3.setText("Select start time and end time for work.");
 
@@ -287,7 +295,7 @@ public class Launcher extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel3)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,24 +340,21 @@ public class Launcher extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel8))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel8)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
@@ -368,14 +373,14 @@ public class Launcher extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addGap(52, 52, 52)
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9)))
-                .addGap(34, 34, 34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
@@ -385,7 +390,7 @@ public class Launcher extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
