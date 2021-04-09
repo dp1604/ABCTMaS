@@ -5,6 +5,10 @@
  */
 package com.ultimatum.abcttms;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JCheckBox;
+
 /**
  *
  * @author dinithagamage
@@ -32,6 +36,88 @@ public class Launcher extends javax.swing.JFrame {
         String [] time = {"8.00","9.00","10.00","11.00","12.00","1.00","2.00","3.00","4.00","5.00","6.00","7.00",};
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(time));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(time));
+        
+        addCheckBoxHandlers();
+    }
+    
+    public void addCheckBoxHandlers(){
+        jCheckBox1.addActionListener((ActionEvent event) -> {
+            JCheckBox cb = (JCheckBox) event.getSource();
+            if (cb.isSelected()) {
+                workingDays[0] = 1;
+                numberOfWorkingDays++;
+            } else {
+                workingDays[0] = 0;
+                numberOfWorkingDays--;
+            }
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+        });
+        jCheckBox2.addActionListener((ActionEvent event) -> {
+            JCheckBox cb = (JCheckBox) event.getSource();
+            if (cb.isSelected()) {
+                workingDays[1] = 1;
+                numberOfWorkingDays++;
+            } else {
+                workingDays[1] = 0;
+                numberOfWorkingDays--;
+            }
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+        });
+        jCheckBox3.addActionListener((ActionEvent event) -> {
+            JCheckBox cb = (JCheckBox) event.getSource();
+            if (cb.isSelected()) {
+                workingDays[2] = 1;
+                numberOfWorkingDays++;
+            } else {
+                workingDays[2] = 0;
+                numberOfWorkingDays--;
+            }
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+        });
+        jCheckBox4.addActionListener((ActionEvent event) -> {
+            JCheckBox cb = (JCheckBox) event.getSource();
+            if (cb.isSelected()) {
+                workingDays[3] = 1;
+                numberOfWorkingDays++;
+            } else {
+                workingDays[3] = 0;
+                numberOfWorkingDays--;
+            }
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+        });
+        jCheckBox5.addActionListener((ActionEvent event) -> {
+            JCheckBox cb = (JCheckBox) event.getSource();
+            if (cb.isSelected()) {
+                workingDays[4] = 1;
+                numberOfWorkingDays++;
+            } else {
+                workingDays[4] = 0;
+                numberOfWorkingDays--;
+            }
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+        });
+        jCheckBox6.addActionListener((ActionEvent event) -> {
+            JCheckBox cb = (JCheckBox) event.getSource();
+            if (cb.isSelected()) {
+                workingDays[5] = 1;
+                numberOfWorkingDays++;
+            } else {
+                workingDays[5] = 0;
+                numberOfWorkingDays--;
+            }
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+        });
+        jCheckBox7.addActionListener((ActionEvent event) -> {
+            JCheckBox cb = (JCheckBox) event.getSource();
+            if (cb.isSelected()) {
+                workingDays[6] = 1;
+                numberOfWorkingDays++;
+            } else {
+                workingDays[6] = 0;
+                numberOfWorkingDays--;
+            }
+            jLabel8.setText("Number of working days : " + numberOfWorkingDays + "");
+        });
     }
 
     /**
@@ -67,6 +153,7 @@ public class Launcher extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -202,6 +289,8 @@ public class Launcher extends javax.swing.JFrame {
 
         jButton4.setText("Add Time Slots");
 
+        jLabel8.setText("Number of working days : 0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,8 +302,14 @@ public class Launcher extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabel8)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -240,7 +335,10 @@ public class Launcher extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel8)))
                 .addGap(34, 34, 34)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -270,6 +368,8 @@ public class Launcher extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -319,7 +419,10 @@ public class Launcher extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    
 }
